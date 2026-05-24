@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<!-- saved from url=(0090)file:///C:/Users/prakh/OneDrive/Desktop/Study%20zone/EXTRA/exam_planner_pcm_eng_cs_v3.html -->
+<html lang="en" data-theme="light"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Exam Planner • PCM + English + CS (NCERT • HCV • RD • NCERT)</title>
+<style>
+  :root{
+    --bg: #f7fafc; --card:#ffffff; --ink:#0b1220; --muted:#64748b; --ring:#e2e8f0; --accent:#0b1220;
+    --phy:#1e3a8a; --chem:#065f46; --math:#6b21a8; --eng:#b45309; --cs:#047857;
+  }
+  [data-theme="dark"]{
+    --bg:#0b1220; --card:#0f172a; --ink:#e5e7eb; --muted:#9aa4b2; --ring:#1f2937; --accent:#e5e7eb;
+    --phy:#60a5fa; --chem:#34d399; --math:#c084fc; --eng:#f59e0b; --cs:#22d3ee;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:linear-gradient(var(--bg),#fff);color:var(--ink);
+            font:15.5px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial}
+  .container{max-width:1200px;margin:0 auto;padding:16px}
+  header{position:sticky;top:0;z-index:10;background:color-mix(in oklab, var(--card) 92%, transparent);
+         backdrop-filter:saturate(1.2) blur(6px);border-bottom:1px solid var(--ring)}
+  header .row{display:flex;gap:12px;align-items:center;padding:10px 16px}
+  h1{font-size:20px;margin:0}
+  .spacer{flex:1}
+  .badge{display:inline-flex;align-items:center;gap:6px;padding:6px 10px;border-radius:999px;
+         background:var(--accent);color:#fff;font-size:12px}
+  .btn{border:1px solid var(--ring);background:var(--card);color:var(--ink);
+       border-radius:999px;padding:8px 12px;cursor:pointer;display:inline-flex;gap:8px;align-items:center}
+  .btn:active{transform:translateY(1px)}
+  .grid4{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+  .card{background:var(--card);border:1px solid var(--ring);border-radius:16px;box-shadow:0 1px 6px rgba(10,10,10,.06)}
+  .card .body{padding:14px}
+  .muted{color:var(--muted);font-size:12px}
+  .progress{height:8px;border-radius:999px;background:#e5e7eb;overflow:hidden}
+  [data-theme="dark"] .progress{background:#1f2937}
+  .progress>span{display:block;height:100%;background:var(--accent)}
+  .toolbar{display:flex;gap:10px;align-items:center;margin:16px 0;flex-wrap:wrap}
+  .search{flex:1;min-width:240px;position:relative}
+  .search input{width:100%;padding:10px 12px 10px 34px;border:1px solid var(--ring);border-radius:999px;background:var(--card);color:var(--ink)}
+  .search svg{position:absolute;left:10px;top:50%;transform:translateY(-50%)}
+  .tabs{display:flex;gap:6px;border:1px solid var(--ring);padding:4px;border-radius:999px;background:var(--card)}
+  .tab{border:none;background:none;border-radius:999px;padding:8px 12px;cursor:pointer;color:var(--ink)}
+  .tab.active{background:var(--accent);color:#fff}
+  .days{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+  @media (max-width:900px){ .grid4{grid-template-columns:1fr 1fr} .days{grid-template-columns:1fr} }
+  .dayhead{display:flex;gap:8px;align-items:center;margin-bottom:8px}
+  .chip{border:1px solid var(--ring);border-radius:999px;padding:4px 10px;font-size:12px;background:var(--card)}
+  .chip.tag{background:var(--accent);color:#fff;border-color:var(--accent)}
+  .section{border-radius:12px;padding:10px;margin:8px 0}
+  .section .title{display:flex;gap:8px;align-items:center;margin-bottom:6px;font-weight:700}
+  .steps label{display:flex;gap:8px;align-items:flex-start;margin:6px 0;font-size:14px}
+  .hide{display:none !important}
+  .col-phy{background:color-mix(in oklab, var(--phy) 10%, #fff);border:1px solid color-mix(in oklab, var(--phy) 20%, var(--ring))}
+  .col-chem{background:color-mix(in oklab, var(--chem) 10%, #fff);border:1px solid color-mix(in oklab, var(--chem) 20%, var(--ring))}
+  .col-math{background:color-mix(in oklab, var(--math) 10%, #fff);border:1px solid color-mix(in oklab, var(--math) 20%, var(--ring))}
+  .col-eng{background:color-mix(in oklab, var(--eng) 12%, #fff);border:1px solid color-mix(in oklab, var(--eng) 25%, var(--ring))}
+  .col-cs{background:color-mix(in oklab, var(--cs) 12%, #fff);border:1px solid color-mix(in oklab, var(--cs) 25%, var(--ring))}
+  .legend{display:flex;gap:10px;flex-wrap:wrap}
+  .legend .dot{width:12px;height:12px;border-radius:999px;display:inline-block;margin-right:6px}
+  .legend span{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--muted)}
+  .kbd{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;border:1px solid var(--ring);border-bottom-width:2px;border-radius:6px;padding:1px 6px;background:var(--card)}
+  .small{font-size:12px}
+</style>
+</head>
+<body>
+<header>
+  <div class="row container">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor"><rect x="3" y="4" width="18" height="18" rx="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+    <h1>Exam Planner • Class XI</h1>
+    <span class="badge" id="countdown">Exam in 32 days</span>
+    <div class="spacer"></div>
+    <button class="btn" id="btnTheme">🌙 Dark</button>
+    <button class="btn" id="btnExport">⬇️ Export</button>
+    <button class="btn" id="btnImport">⬆️ Import</button>
+    <button class="btn" id="btnPrint">🖨️ Print</button>
+    <button class="btn" id="btnReset">♻️ Reset</button>
+  </div>
+</header>
+
+<div class="container">
+  <div class="grid4">
+    <div class="card"><div class="body">
+      <div class="muted">Overall Progress</div>
+      <div class="progress"><span id="progBar" style="width:0%"></span></div>
+      <div class="muted" id="progTxt" style="margin-top:6px">0/366 tasks</div>
+    </div></div>
+    <div class="card"><div class="body">
+      <div class="legend">
+        <span><i class="dot" style="background:var(--phy)"></i>Physics (NCERT + HCV)</span>
+        <span><i class="dot" style="background:var(--chem)"></i>Chemistry (NCERT)</span>
+        <span><i class="dot" style="background:var(--math)"></i>Maths (NCERT + RD)</span>
+        <span><i class="dot" style="background:var(--eng)"></i>English</span>
+        <span><i class="dot" style="background:var(--cs)"></i>CS</span>
+      </div>
+    </div></div>
+    <div class="card"><div class="body"><div class="muted">Tip</div><div><strong>Odd days (3–14 Sep):</strong> Mocks. <strong>Even days:</strong> Targeted revision using ★ error log.</div></div></div>
+    <div class="card"><div class="body">
+      <div class="muted">Shortcuts</div>
+      <div class="small">Press <span class="kbd">/</span> to focus search • <span class="kbd">T</span> to toggle theme</div>
+    </div></div>
+  </div>
+
+  <div class="toolbar">
+    <div class="search">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+      <input id="search" placeholder="Search topic, chapter, or date…">
+    </div>
+    <div class="tabs" id="tabs">
+      <button class="tab active" data-tab="all">All</button>
+      <button class="tab" data-tab="physics">Physics</button>
+      <button class="tab" data-tab="chemistry">Chemistry</button>
+      <button class="tab" data-tab="maths">Maths</button>
+      <button class="tab" data-tab="english">English</button>
+      <button class="tab" data-tab="cs">CS</button>
+    </div>
+  </div>
+
+  <div class="days" id="days"><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">14 Aug</span>
+          
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 5 Circular Motion – Basics</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-14:physics:0"> <span>NCERT: read section → underline key results</span></label><label><input type="checkbox" data-id="2025-08-14:physics:1"> <span>Write formulas in formula notebook</span></label><label><input type="checkbox" data-id="2025-08-14:physics:2"> <span>NCERT: in-text &amp; example problems</span></label><label><input type="checkbox" data-id="2025-08-14:physics:3"> <span>HC Verma: 4–5 worked examples</span></label><label><input type="checkbox" data-id="2025-08-14:physics:4"> <span>HC Verma: 10–15 exercise numericals (mark ★ tough)</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 4 Chemical Bonding – Types of bonds</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-14:chemistry:0"> <span>NCERT: line-by-line reading; highlight defs/exceptions</span></label><label><input type="checkbox" data-id="2025-08-14:chemistry:1"> <span>Organic: reaction maps; Inorganic: memorize NCERT lines</span></label><label><input type="checkbox" data-id="2025-08-14:chemistry:2"> <span>Solve NCERT in-text questions</span></label><label><input type="checkbox" data-id="2025-08-14:chemistry:3"> <span>Attempt 10–15 end-exercise Qs (then Exemplar if time)</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 3 Trigonometry – Basics</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-14:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-08-14:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-08-14:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-08-14:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">15 Aug</span>
+          
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 5 Circular Motion – Banking &amp; Loop</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-15:physics:0"> <span>NCERT: read section → underline key results</span></label><label><input type="checkbox" data-id="2025-08-15:physics:1"> <span>Write formulas in formula notebook</span></label><label><input type="checkbox" data-id="2025-08-15:physics:2"> <span>NCERT: in-text &amp; example problems</span></label><label><input type="checkbox" data-id="2025-08-15:physics:3"> <span>HC Verma: 4–5 worked examples</span></label><label><input type="checkbox" data-id="2025-08-15:physics:4"> <span>HC Verma: 10–15 exercise numericals (mark ★ tough)</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 4 Chemical Bonding – VSEPR &amp; shapes</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-15:chemistry:0"> <span>NCERT: line-by-line reading; highlight defs/exceptions</span></label><label><input type="checkbox" data-id="2025-08-15:chemistry:1"> <span>Organic: reaction maps; Inorganic: memorize NCERT lines</span></label><label><input type="checkbox" data-id="2025-08-15:chemistry:2"> <span>Solve NCERT in-text questions</span></label><label><input type="checkbox" data-id="2025-08-15:chemistry:3"> <span>Attempt 10–15 end-exercise Qs (then Exemplar if time)</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 3 Trigonometry – Identities</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-15:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-08-15:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-08-15:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-08-15:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">16 Aug</span>
+          
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 3 Motion in 2D – Vectors</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-16:physics:0"> <span>NCERT: read section → underline key results</span></label><label><input type="checkbox" data-id="2025-08-16:physics:1"> <span>Write formulas in formula notebook</span></label><label><input type="checkbox" data-id="2025-08-16:physics:2"> <span>NCERT: in-text &amp; example problems</span></label><label><input type="checkbox" data-id="2025-08-16:physics:3"> <span>HC Verma: 4–5 worked examples</span></label><label><input type="checkbox" data-id="2025-08-16:physics:4"> <span>HC Verma: 10–15 exercise numericals (mark ★ tough)</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 3 Periodicity – Basics</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-16:chemistry:0"> <span>NCERT: line-by-line reading; highlight defs/exceptions</span></label><label><input type="checkbox" data-id="2025-08-16:chemistry:1"> <span>Organic: reaction maps; Inorganic: memorize NCERT lines</span></label><label><input type="checkbox" data-id="2025-08-16:chemistry:2"> <span>Solve NCERT in-text questions</span></label><label><input type="checkbox" data-id="2025-08-16:chemistry:3"> <span>Attempt 10–15 end-exercise Qs (then Exemplar if time)</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 4 Complex Numbers – Basics</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-16:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-08-16:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-08-16:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-08-16:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">17 Aug</span>
+          
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 3 Motion in 2D – Projectile</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-17:physics:0"> <span>NCERT: read section → underline key results</span></label><label><input type="checkbox" data-id="2025-08-17:physics:1"> <span>Write formulas in formula notebook</span></label><label><input type="checkbox" data-id="2025-08-17:physics:2"> <span>NCERT: in-text &amp; example problems</span></label><label><input type="checkbox" data-id="2025-08-17:physics:3"> <span>HC Verma: 4–5 worked examples</span></label><label><input type="checkbox" data-id="2025-08-17:physics:4"> <span>HC Verma: 10–15 exercise numericals (mark ★ tough)</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 3 Periodicity – Periodic trends</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-17:chemistry:0"> <span>NCERT: line-by-line reading; highlight defs/exceptions</span></label><label><input type="checkbox" data-id="2025-08-17:chemistry:1"> <span>Organic: reaction maps; Inorganic: memorize NCERT lines</span></label><label><input type="checkbox" data-id="2025-08-17:chemistry:2"> <span>Solve NCERT in-text questions</span></label><label><input type="checkbox" data-id="2025-08-17:chemistry:3"> <span>Attempt 10–15 end-exercise Qs (then Exemplar if time)</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 4 Complex Numbers – Arg/Modulus</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-17:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-08-17:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-08-17:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-08-17:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">18 Aug</span>
+          
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Revise Ch 1 Units &amp; Measurement</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-18:physics:0"> <span>Formula notebook (10 min scan)</span></label><label><input type="checkbox" data-id="2025-08-18:physics:1"> <span>HC Verma: 8–10 mixed numericals</span></label><label><input type="checkbox" data-id="2025-08-18:physics:2"> <span>Revisit theory for wrong Qs</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Revise Ch 1 Basic Concepts (Stoichiometry)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-18:chemistry:0"> <span>Skim highlighted NCERT pages</span></label><label><input type="checkbox" data-id="2025-08-18:chemistry:1"> <span>Solve 15–20 mixed NCERT/Exemplar Qs</span></label><label><input type="checkbox" data-id="2025-08-18:chemistry:2"> <span>Update reaction map / error log</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Revise Ch 1 Sets</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-18:maths:0"> <span>Recall formulas (5–10 min)</span></label><label><input type="checkbox" data-id="2025-08-18:maths:1"> <span>RD Sharma: 15–20 mixed problems</span></label><label><input type="checkbox" data-id="2025-08-18:maths:2"> <span>Redo ★ problems</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">19 Aug</span>
+          
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Revise Ch 2 Motion in 1D</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-19:physics:0"> <span>Formula notebook (10 min scan)</span></label><label><input type="checkbox" data-id="2025-08-19:physics:1"> <span>HC Verma: 8–10 mixed numericals</span></label><label><input type="checkbox" data-id="2025-08-19:physics:2"> <span>Revisit theory for wrong Qs</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Revise Ch 2 Atomic Structure</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-19:chemistry:0"> <span>Skim highlighted NCERT pages</span></label><label><input type="checkbox" data-id="2025-08-19:chemistry:1"> <span>Solve 15–20 mixed NCERT/Exemplar Qs</span></label><label><input type="checkbox" data-id="2025-08-19:chemistry:2"> <span>Update reaction map / error log</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 2 Relations &amp; Functions</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-19:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-08-19:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-08-19:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-08-19:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">20 Aug</span>
+          
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 4 NLM – Newton’s Laws</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-20:physics:0"> <span>NCERT: read section → underline key results</span></label><label><input type="checkbox" data-id="2025-08-20:physics:1"> <span>Write formulas in formula notebook</span></label><label><input type="checkbox" data-id="2025-08-20:physics:2"> <span>NCERT: in-text &amp; example problems</span></label><label><input type="checkbox" data-id="2025-08-20:physics:3"> <span>HC Verma: 4–5 worked examples</span></label><label><input type="checkbox" data-id="2025-08-20:physics:4"> <span>HC Verma: 10–15 exercise numericals (mark ★ tough)</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 8 Organic: Basic Principles – I</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-20:chemistry:0"> <span>NCERT: line-by-line reading; highlight defs/exceptions</span></label><label><input type="checkbox" data-id="2025-08-20:chemistry:1"> <span>Organic: reaction maps; Inorganic: memorize NCERT lines</span></label><label><input type="checkbox" data-id="2025-08-20:chemistry:2"> <span>Solve NCERT in-text questions</span></label><label><input type="checkbox" data-id="2025-08-20:chemistry:3"> <span>Attempt 10–15 end-exercise Qs (then Exemplar if time)</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Relations &amp; Functions (cont.)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-20:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-08-20:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-08-20:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-08-20:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">21 Aug</span>
+          
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 4 NLM – Friction</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-21:physics:0"> <span>NCERT: read section → underline key results</span></label><label><input type="checkbox" data-id="2025-08-21:physics:1"> <span>Write formulas in formula notebook</span></label><label><input type="checkbox" data-id="2025-08-21:physics:2"> <span>NCERT: in-text &amp; example problems</span></label><label><input type="checkbox" data-id="2025-08-21:physics:3"> <span>HC Verma: 4–5 worked examples</span></label><label><input type="checkbox" data-id="2025-08-21:physics:4"> <span>HC Verma: 10–15 exercise numericals (mark ★ tough)</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 8 Organic – Nomenclature</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-21:chemistry:0"> <span>NCERT: line-by-line reading; highlight defs/exceptions</span></label><label><input type="checkbox" data-id="2025-08-21:chemistry:1"> <span>Organic: reaction maps; Inorganic: memorize NCERT lines</span></label><label><input type="checkbox" data-id="2025-08-21:chemistry:2"> <span>Solve NCERT in-text questions</span></label><label><input type="checkbox" data-id="2025-08-21:chemistry:3"> <span>Attempt 10–15 end-exercise Qs (then Exemplar if time)</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 5 Linear Inequalities</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-21:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-08-21:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-08-21:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-08-21:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">22 Aug</span>
+          
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 6 Work/Energy – Work–Energy theorem</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-22:physics:0"> <span>NCERT: read section → underline key results</span></label><label><input type="checkbox" data-id="2025-08-22:physics:1"> <span>Write formulas in formula notebook</span></label><label><input type="checkbox" data-id="2025-08-22:physics:2"> <span>NCERT: in-text &amp; example problems</span></label><label><input type="checkbox" data-id="2025-08-22:physics:3"> <span>HC Verma: 4–5 worked examples</span></label><label><input type="checkbox" data-id="2025-08-22:physics:4"> <span>HC Verma: 10–15 exercise numericals (mark ★ tough)</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 8 Organic – Isomerism</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-22:chemistry:0"> <span>NCERT: line-by-line reading; highlight defs/exceptions</span></label><label><input type="checkbox" data-id="2025-08-22:chemistry:1"> <span>Organic: reaction maps; Inorganic: memorize NCERT lines</span></label><label><input type="checkbox" data-id="2025-08-22:chemistry:2"> <span>Solve NCERT in-text questions</span></label><label><input type="checkbox" data-id="2025-08-22:chemistry:3"> <span>Attempt 10–15 end-exercise Qs (then Exemplar if time)</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Linear Inequalities (cont.)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-22:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-08-22:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-08-22:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-08-22:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">23 Aug</span>
+          
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 6 Work/Energy – Power &amp; Springs</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-23:physics:0"> <span>NCERT: read section → underline key results</span></label><label><input type="checkbox" data-id="2025-08-23:physics:1"> <span>Write formulas in formula notebook</span></label><label><input type="checkbox" data-id="2025-08-23:physics:2"> <span>NCERT: in-text &amp; example problems</span></label><label><input type="checkbox" data-id="2025-08-23:physics:3"> <span>HC Verma: 4–5 worked examples</span></label><label><input type="checkbox" data-id="2025-08-23:physics:4"> <span>HC Verma: 10–15 exercise numericals (mark ★ tough)</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 9 Hydrocarbons – Alkanes</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-23:chemistry:0"> <span>NCERT: line-by-line reading; highlight defs/exceptions</span></label><label><input type="checkbox" data-id="2025-08-23:chemistry:1"> <span>Organic: reaction maps; Inorganic: memorize NCERT lines</span></label><label><input type="checkbox" data-id="2025-08-23:chemistry:2"> <span>Solve NCERT in-text questions</span></label><label><input type="checkbox" data-id="2025-08-23:chemistry:3"> <span>Attempt 10–15 end-exercise Qs (then Exemplar if time)</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 6 Permutation &amp; Combination – Basics</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-23:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-08-23:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-08-23:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-08-23:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">24 Aug</span>
+          
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 7 Rotational Motion – Torque &amp; I</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-24:physics:0"> <span>NCERT: read section → underline key results</span></label><label><input type="checkbox" data-id="2025-08-24:physics:1"> <span>Write formulas in formula notebook</span></label><label><input type="checkbox" data-id="2025-08-24:physics:2"> <span>NCERT: in-text &amp; example problems</span></label><label><input type="checkbox" data-id="2025-08-24:physics:3"> <span>HC Verma: 4–5 worked examples</span></label><label><input type="checkbox" data-id="2025-08-24:physics:4"> <span>HC Verma: 10–15 exercise numericals (mark ★ tough)</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 9 Hydrocarbons – Alkenes/Alkynes</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-24:chemistry:0"> <span>NCERT: line-by-line reading; highlight defs/exceptions</span></label><label><input type="checkbox" data-id="2025-08-24:chemistry:1"> <span>Organic: reaction maps; Inorganic: memorize NCERT lines</span></label><label><input type="checkbox" data-id="2025-08-24:chemistry:2"> <span>Solve NCERT in-text questions</span></label><label><input type="checkbox" data-id="2025-08-24:chemistry:3"> <span>Attempt 10–15 end-exercise Qs (then Exemplar if time)</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 6 P&amp;C – Problems</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-24:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-08-24:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-08-24:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-08-24:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">25 Aug</span>
+          
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 7 Rotational Motion – Rolling</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-25:physics:0"> <span>NCERT: read section → underline key results</span></label><label><input type="checkbox" data-id="2025-08-25:physics:1"> <span>Write formulas in formula notebook</span></label><label><input type="checkbox" data-id="2025-08-25:physics:2"> <span>NCERT: in-text &amp; example problems</span></label><label><input type="checkbox" data-id="2025-08-25:physics:3"> <span>HC Verma: 4–5 worked examples</span></label><label><input type="checkbox" data-id="2025-08-25:physics:4"> <span>HC Verma: 10–15 exercise numericals (mark ★ tough)</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 9 Hydrocarbons – Aromatics</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-25:chemistry:0"> <span>NCERT: line-by-line reading; highlight defs/exceptions</span></label><label><input type="checkbox" data-id="2025-08-25:chemistry:1"> <span>Organic: reaction maps; Inorganic: memorize NCERT lines</span></label><label><input type="checkbox" data-id="2025-08-25:chemistry:2"> <span>Solve NCERT in-text questions</span></label><label><input type="checkbox" data-id="2025-08-25:chemistry:3"> <span>Attempt 10–15 end-exercise Qs (then Exemplar if time)</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 7 Sequence &amp; Series – Basics</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-25:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-08-25:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-08-25:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-08-25:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">26 Aug</span>
+          
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Buffer – Leftover topics</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-26:physics:0"> <span>NCERT: read section → underline key results</span></label><label><input type="checkbox" data-id="2025-08-26:physics:1"> <span>Write formulas in formula notebook</span></label><label><input type="checkbox" data-id="2025-08-26:physics:2"> <span>NCERT: in-text &amp; example problems</span></label><label><input type="checkbox" data-id="2025-08-26:physics:3"> <span>HC Verma: 4–5 worked examples</span></label><label><input type="checkbox" data-id="2025-08-26:physics:4"> <span>HC Verma: 10–15 exercise numericals (mark ★ tough)</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Buffer – Leftover topics</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-26:chemistry:0"> <span>NCERT: line-by-line reading; highlight defs/exceptions</span></label><label><input type="checkbox" data-id="2025-08-26:chemistry:1"> <span>Organic: reaction maps; Inorganic: memorize NCERT lines</span></label><label><input type="checkbox" data-id="2025-08-26:chemistry:2"> <span>Solve NCERT in-text questions</span></label><label><input type="checkbox" data-id="2025-08-26:chemistry:3"> <span>Attempt 10–15 end-exercise Qs (then Exemplar if time)</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 7 Sequence &amp; Series – Problems</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-26:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-08-26:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-08-26:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-08-26:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">27 Aug</span>
+          
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Full Physics formula recap</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-27:physics:0"> <span>Formula notebook (10 min scan)</span></label><label><input type="checkbox" data-id="2025-08-27:physics:1"> <span>HC Verma: 8–10 mixed numericals</span></label><label><input type="checkbox" data-id="2025-08-27:physics:2"> <span>Revisit theory for wrong Qs</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Full Chem formula/reaction recap</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-27:chemistry:0"> <span>Skim highlighted NCERT pages</span></label><label><input type="checkbox" data-id="2025-08-27:chemistry:1"> <span>Solve 15–20 mixed NCERT/Exemplar Qs</span></label><label><input type="checkbox" data-id="2025-08-27:chemistry:2"> <span>Update reaction map / error log</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 8 Binomial Theorem</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-27:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-08-27:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-08-27:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-08-27:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">28 Aug</span>
+          
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Physics Exemplar problems</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-28:physics:0"> <span>NCERT: read section → underline key results</span></label><label><input type="checkbox" data-id="2025-08-28:physics:1"> <span>Write formulas in formula notebook</span></label><label><input type="checkbox" data-id="2025-08-28:physics:2"> <span>NCERT: in-text &amp; example problems</span></label><label><input type="checkbox" data-id="2025-08-28:physics:3"> <span>HC Verma: 4–5 worked examples</span></label><label><input type="checkbox" data-id="2025-08-28:physics:4"> <span>HC Verma: 10–15 exercise numericals (mark ★ tough)</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Chem Exemplar problems</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-28:chemistry:0"> <span>NCERT: line-by-line reading; highlight defs/exceptions</span></label><label><input type="checkbox" data-id="2025-08-28:chemistry:1"> <span>Organic: reaction maps; Inorganic: memorize NCERT lines</span></label><label><input type="checkbox" data-id="2025-08-28:chemistry:2"> <span>Solve NCERT in-text questions</span></label><label><input type="checkbox" data-id="2025-08-28:chemistry:3"> <span>Attempt 10–15 end-exercise Qs (then Exemplar if time)</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Binomial Theorem (cont.)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-28:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-08-28:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-08-28:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-08-28:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">29 Aug</span>
+          
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Mixed mock (PCM)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-29:physics:0"> <span>Formula notebook (10 min scan)</span></label><label><input type="checkbox" data-id="2025-08-29:physics:1"> <span>HC Verma: 8–10 mixed numericals</span></label><label><input type="checkbox" data-id="2025-08-29:physics:2"> <span>Revisit theory for wrong Qs</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Mock corrections &amp; errors log</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-29:chemistry:0"> <span>Skim highlighted NCERT pages</span></label><label><input type="checkbox" data-id="2025-08-29:chemistry:1"> <span>Solve 15–20 mixed NCERT/Exemplar Qs</span></label><label><input type="checkbox" data-id="2025-08-29:chemistry:2"> <span>Update reaction map / error log</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Ch 9 Intro to 3D Geometry</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-29:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-08-29:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-08-29:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-08-29:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">30 Aug</span>
+          
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Weak topics revision – Physics</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-30:physics:0"> <span>Formula notebook (10 min scan)</span></label><label><input type="checkbox" data-id="2025-08-30:physics:1"> <span>HC Verma: 8–10 mixed numericals</span></label><label><input type="checkbox" data-id="2025-08-30:physics:2"> <span>Revisit theory for wrong Qs</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Weak topics revision – Chemistry</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-30:chemistry:0"> <span>Skim highlighted NCERT pages</span></label><label><input type="checkbox" data-id="2025-08-30:chemistry:1"> <span>Solve 15–20 mixed NCERT/Exemplar Qs</span></label><label><input type="checkbox" data-id="2025-08-30:chemistry:2"> <span>Update reaction map / error log</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Weak topics revision – Maths</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-30:maths:0"> <span>Recall formulas (5–10 min)</span></label><label><input type="checkbox" data-id="2025-08-30:maths:1"> <span>RD Sharma: 15–20 mixed problems</span></label><label><input type="checkbox" data-id="2025-08-30:maths:2"> <span>Redo ★ problems</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">31 Aug</span>
+          
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Physics mixed numericals</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-31:physics:0"> <span>Formula notebook (10 min scan)</span></label><label><input type="checkbox" data-id="2025-08-31:physics:1"> <span>HC Verma: 8–10 mixed numericals</span></label><label><input type="checkbox" data-id="2025-08-31:physics:2"> <span>Revisit theory for wrong Qs</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Chemistry mixed numericals</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-31:chemistry:0"> <span>Skim highlighted NCERT pages</span></label><label><input type="checkbox" data-id="2025-08-31:chemistry:1"> <span>Solve 15–20 mixed NCERT/Exemplar Qs</span></label><label><input type="checkbox" data-id="2025-08-31:chemistry:2"> <span>Update reaction map / error log</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Maths mixed problems</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-08-31:maths:0"> <span>Recall formulas (5–10 min)</span></label><label><input type="checkbox" data-id="2025-08-31:maths:1"> <span>RD Sharma: 15–20 mixed problems</span></label><label><input type="checkbox" data-id="2025-08-31:maths:2"> <span>Redo ★ problems</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">01 Sept</span>
+          
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">NCERT exercise – full sweep</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-01:physics:0"> <span>NCERT: read section → underline key results</span></label><label><input type="checkbox" data-id="2025-09-01:physics:1"> <span>Write formulas in formula notebook</span></label><label><input type="checkbox" data-id="2025-09-01:physics:2"> <span>NCERT: in-text &amp; example problems</span></label><label><input type="checkbox" data-id="2025-09-01:physics:3"> <span>HC Verma: 4–5 worked examples</span></label><label><input type="checkbox" data-id="2025-09-01:physics:4"> <span>HC Verma: 10–15 exercise numericals (mark ★ tough)</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">NCERT exercise – full sweep</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-01:chemistry:0"> <span>NCERT: line-by-line reading; highlight defs/exceptions</span></label><label><input type="checkbox" data-id="2025-09-01:chemistry:1"> <span>Organic: reaction maps; Inorganic: memorize NCERT lines</span></label><label><input type="checkbox" data-id="2025-09-01:chemistry:2"> <span>Solve NCERT in-text questions</span></label><label><input type="checkbox" data-id="2025-09-01:chemistry:3"> <span>Attempt 10–15 end-exercise Qs (then Exemplar if time)</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">NCERT exercise – full sweep</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-01:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-09-01:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-09-01:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-09-01:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">02 Sept</span>
+          <span class="chip tag">Mock Day</span>
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Full Physics mock (NCERT-level, 3 sections)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-02:physics:0"> <span>Formula notebook (10 min scan)</span></label><label><input type="checkbox" data-id="2025-09-02:physics:1"> <span>HC Verma: 8–10 mixed numericals</span></label><label><input type="checkbox" data-id="2025-09-02:physics:2"> <span>Revisit theory for wrong Qs</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Full Chemistry mock (mix Physical/Organic/Inorganic)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-02:chemistry:0"> <span>Skim highlighted NCERT pages</span></label><label><input type="checkbox" data-id="2025-09-02:chemistry:1"> <span>Solve 15–20 mixed NCERT/Exemplar Qs</span></label><label><input type="checkbox" data-id="2025-09-02:chemistry:2"> <span>Update reaction map / error log</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Full Maths mock (algebra + trig + counting)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-02:maths:0"> <span>Recall formulas (5–10 min)</span></label><label><input type="checkbox" data-id="2025-09-02:maths:1"> <span>RD Sharma: 15–20 mixed problems</span></label><label><input type="checkbox" data-id="2025-09-02:maths:2"> <span>Redo ★ problems</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">03 Sept</span>
+          <span class="chip tag">Targeted Revision</span>
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Revise formulas + derivations; redo HCV ★ questions</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-03:physics:0"> <span>Formula notebook (10 min scan)</span></label><label><input type="checkbox" data-id="2025-09-03:physics:1"> <span>HC Verma: 8–10 mixed numericals</span></label><label><input type="checkbox" data-id="2025-09-03:physics:2"> <span>Revisit theory for wrong Qs</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">NCERT back exercise redo; reaction maps</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-03:chemistry:0"> <span>NCERT: line-by-line reading; highlight defs/exceptions</span></label><label><input type="checkbox" data-id="2025-09-03:chemistry:1"> <span>Organic: reaction maps; Inorganic: memorize NCERT lines</span></label><label><input type="checkbox" data-id="2025-09-03:chemistry:2"> <span>Solve NCERT in-text questions</span></label><label><input type="checkbox" data-id="2025-09-03:chemistry:3"> <span>Attempt 10–15 end-exercise Qs (then Exemplar if time)</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">RD Sharma ★ problems redo; formula drill</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-03:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-09-03:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-09-03:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-09-03:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">04 Sept</span>
+          <span class="chip tag">Mock Day</span>
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Full Physics mock (NCERT-level, 3 sections)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-04:physics:0"> <span>Formula notebook (10 min scan)</span></label><label><input type="checkbox" data-id="2025-09-04:physics:1"> <span>HC Verma: 8–10 mixed numericals</span></label><label><input type="checkbox" data-id="2025-09-04:physics:2"> <span>Revisit theory for wrong Qs</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Full Chemistry mock (mix Physical/Organic/Inorganic)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-04:chemistry:0"> <span>Skim highlighted NCERT pages</span></label><label><input type="checkbox" data-id="2025-09-04:chemistry:1"> <span>Solve 15–20 mixed NCERT/Exemplar Qs</span></label><label><input type="checkbox" data-id="2025-09-04:chemistry:2"> <span>Update reaction map / error log</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Full Maths mock (algebra + trig + counting)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-04:maths:0"> <span>Recall formulas (5–10 min)</span></label><label><input type="checkbox" data-id="2025-09-04:maths:1"> <span>RD Sharma: 15–20 mixed problems</span></label><label><input type="checkbox" data-id="2025-09-04:maths:2"> <span>Redo ★ problems</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">05 Sept</span>
+          <span class="chip tag">Targeted Revision</span>
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Revise formulas + derivations; redo HCV ★ questions</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-05:physics:0"> <span>Formula notebook (10 min scan)</span></label><label><input type="checkbox" data-id="2025-09-05:physics:1"> <span>HC Verma: 8–10 mixed numericals</span></label><label><input type="checkbox" data-id="2025-09-05:physics:2"> <span>Revisit theory for wrong Qs</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">NCERT back exercise redo; reaction maps</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-05:chemistry:0"> <span>NCERT: line-by-line reading; highlight defs/exceptions</span></label><label><input type="checkbox" data-id="2025-09-05:chemistry:1"> <span>Organic: reaction maps; Inorganic: memorize NCERT lines</span></label><label><input type="checkbox" data-id="2025-09-05:chemistry:2"> <span>Solve NCERT in-text questions</span></label><label><input type="checkbox" data-id="2025-09-05:chemistry:3"> <span>Attempt 10–15 end-exercise Qs (then Exemplar if time)</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">RD Sharma ★ problems redo; formula drill</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-05:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-09-05:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-09-05:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-09-05:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">06 Sept</span>
+          <span class="chip tag">Mock Day</span>
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Full Physics mock (NCERT-level, 3 sections)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-06:physics:0"> <span>Formula notebook (10 min scan)</span></label><label><input type="checkbox" data-id="2025-09-06:physics:1"> <span>HC Verma: 8–10 mixed numericals</span></label><label><input type="checkbox" data-id="2025-09-06:physics:2"> <span>Revisit theory for wrong Qs</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Full Chemistry mock (mix Physical/Organic/Inorganic)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-06:chemistry:0"> <span>Skim highlighted NCERT pages</span></label><label><input type="checkbox" data-id="2025-09-06:chemistry:1"> <span>Solve 15–20 mixed NCERT/Exemplar Qs</span></label><label><input type="checkbox" data-id="2025-09-06:chemistry:2"> <span>Update reaction map / error log</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Full Maths mock (algebra + trig + counting)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-06:maths:0"> <span>Recall formulas (5–10 min)</span></label><label><input type="checkbox" data-id="2025-09-06:maths:1"> <span>RD Sharma: 15–20 mixed problems</span></label><label><input type="checkbox" data-id="2025-09-06:maths:2"> <span>Redo ★ problems</span></label></div></div><div class="section col-eng"><div class="title">English</div>
+          <div class="muted" style="margin:4px 0 8px">Reading: Unseen passage; Note-making • Writing: Speech/Debate outlines • Grammar: Tenses &amp; transformation</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-06:english:0"> <span>Reading: 1 unseen passage → summary + answers</span></label><label><input type="checkbox" data-id="2025-09-06:english:1"> <span>Writing: prepare 2 outlines (speech/debate) + 1 fair draft</span></label><label><input type="checkbox" data-id="2025-09-06:english:2"> <span>Grammar: 25 Qs (tenses/transformations) timed</span></label><label><input type="checkbox" data-id="2025-09-06:english:3"> <span>Literature: read + margin notes for 3–4 pieces; make quote/point bullets</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">07 Sept</span>
+          <span class="chip tag">Targeted Revision</span>
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Revise formulas + derivations; redo HCV ★ questions</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-07:physics:0"> <span>Formula notebook (10 min scan)</span></label><label><input type="checkbox" data-id="2025-09-07:physics:1"> <span>HC Verma: 8–10 mixed numericals</span></label><label><input type="checkbox" data-id="2025-09-07:physics:2"> <span>Revisit theory for wrong Qs</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">NCERT back exercise redo; reaction maps</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-07:chemistry:0"> <span>NCERT: line-by-line reading; highlight defs/exceptions</span></label><label><input type="checkbox" data-id="2025-09-07:chemistry:1"> <span>Organic: reaction maps; Inorganic: memorize NCERT lines</span></label><label><input type="checkbox" data-id="2025-09-07:chemistry:2"> <span>Solve NCERT in-text questions</span></label><label><input type="checkbox" data-id="2025-09-07:chemistry:3"> <span>Attempt 10–15 end-exercise Qs (then Exemplar if time)</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">RD Sharma ★ problems redo; formula drill</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-07:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-09-07:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-09-07:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-09-07:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">08 Sept</span>
+          <span class="chip tag">Mock Day</span>
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Full Physics mock (NCERT-level, 3 sections)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-08:physics:0"> <span>Formula notebook (10 min scan)</span></label><label><input type="checkbox" data-id="2025-09-08:physics:1"> <span>HC Verma: 8–10 mixed numericals</span></label><label><input type="checkbox" data-id="2025-09-08:physics:2"> <span>Revisit theory for wrong Qs</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Full Chemistry mock (mix Physical/Organic/Inorganic)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-08:chemistry:0"> <span>Skim highlighted NCERT pages</span></label><label><input type="checkbox" data-id="2025-09-08:chemistry:1"> <span>Solve 15–20 mixed NCERT/Exemplar Qs</span></label><label><input type="checkbox" data-id="2025-09-08:chemistry:2"> <span>Update reaction map / error log</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Full Maths mock (algebra + trig + counting)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-08:maths:0"> <span>Recall formulas (5–10 min)</span></label><label><input type="checkbox" data-id="2025-09-08:maths:1"> <span>RD Sharma: 15–20 mixed problems</span></label><label><input type="checkbox" data-id="2025-09-08:maths:2"> <span>Redo ★ problems</span></label></div></div><div class="section col-eng"><div class="title">English</div>
+          <div class="muted" style="margin:4px 0 8px">Hornbill: The Portrait of a Lady, A Photograph (poem), We’re Not Afraid… • Snapshots: The Summer of the Beautiful White Horse</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-08:english:0"> <span>Reading: 1 unseen passage → summary + answers</span></label><label><input type="checkbox" data-id="2025-09-08:english:1"> <span>Writing: prepare 2 outlines (speech/debate) + 1 fair draft</span></label><label><input type="checkbox" data-id="2025-09-08:english:2"> <span>Grammar: 25 Qs (tenses/transformations) timed</span></label><label><input type="checkbox" data-id="2025-09-08:english:3"> <span>Literature: read + margin notes for 3–4 pieces; make quote/point bullets</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">09 Sept</span>
+          <span class="chip tag">Targeted Revision</span>
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Revise formulas + derivations; redo HCV ★ questions</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-09:physics:0"> <span>Formula notebook (10 min scan)</span></label><label><input type="checkbox" data-id="2025-09-09:physics:1"> <span>HC Verma: 8–10 mixed numericals</span></label><label><input type="checkbox" data-id="2025-09-09:physics:2"> <span>Revisit theory for wrong Qs</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">NCERT back exercise redo; reaction maps</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-09:chemistry:0"> <span>NCERT: line-by-line reading; highlight defs/exceptions</span></label><label><input type="checkbox" data-id="2025-09-09:chemistry:1"> <span>Organic: reaction maps; Inorganic: memorize NCERT lines</span></label><label><input type="checkbox" data-id="2025-09-09:chemistry:2"> <span>Solve NCERT in-text questions</span></label><label><input type="checkbox" data-id="2025-09-09:chemistry:3"> <span>Attempt 10–15 end-exercise Qs (then Exemplar if time)</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">RD Sharma ★ problems redo; formula drill</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-09:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-09-09:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-09-09:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-09-09:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div><div class="section col-cs"><div class="title">Computer Science</div>
+          <div class="muted" style="margin:4px 0 8px">Unit 1: Computer System Overview, Data Representation, Boolean Logic</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-09:cs:0"> <span>Theory: make one-page cheatsheet per subtopic (key terms, diagrams)</span></label><label><input type="checkbox" data-id="2025-09-09:cs:1"> <span>Python: 8–10 small code snippets (print, input, if-else, loops, lists)</span></label><label><input type="checkbox" data-id="2025-09-09:cs:2"> <span>Solve 10 concept Qs (MCQ/short) from notes/NCERT</span></label><label><input type="checkbox" data-id="2025-09-09:cs:3"> <span>Revise common errors &amp; dry-run 2 programs</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">10 Sept</span>
+          <span class="chip tag">Mock Day</span>
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Full Physics mock (NCERT-level, 3 sections)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-10:physics:0"> <span>Formula notebook (10 min scan)</span></label><label><input type="checkbox" data-id="2025-09-10:physics:1"> <span>HC Verma: 8–10 mixed numericals</span></label><label><input type="checkbox" data-id="2025-09-10:physics:2"> <span>Revisit theory for wrong Qs</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Full Chemistry mock (mix Physical/Organic/Inorganic)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-10:chemistry:0"> <span>Skim highlighted NCERT pages</span></label><label><input type="checkbox" data-id="2025-09-10:chemistry:1"> <span>Solve 15–20 mixed NCERT/Exemplar Qs</span></label><label><input type="checkbox" data-id="2025-09-10:chemistry:2"> <span>Update reaction map / error log</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Full Maths mock (algebra + trig + counting)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-10:maths:0"> <span>Recall formulas (5–10 min)</span></label><label><input type="checkbox" data-id="2025-09-10:maths:1"> <span>RD Sharma: 15–20 mixed problems</span></label><label><input type="checkbox" data-id="2025-09-10:maths:2"> <span>Redo ★ problems</span></label></div></div><div class="section col-eng"><div class="title">English</div>
+          <div class="muted" style="margin:4px 0 8px">Hornbill: Discovering Tut, Laburnum Top (poem), The Voice of the Rain (poem), The Adventure • Snapshots: The Address, Mother’s Day</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-10:english:0"> <span>Reading: 1 unseen passage → summary + answers</span></label><label><input type="checkbox" data-id="2025-09-10:english:1"> <span>Writing: prepare 2 outlines (speech/debate) + 1 fair draft</span></label><label><input type="checkbox" data-id="2025-09-10:english:2"> <span>Grammar: 25 Qs (tenses/transformations) timed</span></label><label><input type="checkbox" data-id="2025-09-10:english:3"> <span>Literature: read + margin notes for 3–4 pieces; make quote/point bullets</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">11 Sept</span>
+          <span class="chip tag">Targeted Revision</span>
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Revise formulas + derivations; redo HCV ★ questions</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-11:physics:0"> <span>Formula notebook (10 min scan)</span></label><label><input type="checkbox" data-id="2025-09-11:physics:1"> <span>HC Verma: 8–10 mixed numericals</span></label><label><input type="checkbox" data-id="2025-09-11:physics:2"> <span>Revisit theory for wrong Qs</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">NCERT back exercise redo; reaction maps</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-11:chemistry:0"> <span>NCERT: line-by-line reading; highlight defs/exceptions</span></label><label><input type="checkbox" data-id="2025-09-11:chemistry:1"> <span>Organic: reaction maps; Inorganic: memorize NCERT lines</span></label><label><input type="checkbox" data-id="2025-09-11:chemistry:2"> <span>Solve NCERT in-text questions</span></label><label><input type="checkbox" data-id="2025-09-11:chemistry:3"> <span>Attempt 10–15 end-exercise Qs (then Exemplar if time)</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">RD Sharma ★ problems redo; formula drill</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-11:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-09-11:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-09-11:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-09-11:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div><div class="section col-cs"><div class="title">Computer Science</div>
+          <div class="muted" style="margin:4px 0 8px">Unit 2: CT &amp; Programming I — Intro to problem solving, Getting Started with Python, Python Fundamentals, Data Handling, Flow of Control</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-11:cs:0"> <span>Theory: make one-page cheatsheet per subtopic (key terms, diagrams)</span></label><label><input type="checkbox" data-id="2025-09-11:cs:1"> <span>Python: 8–10 small code snippets (print, input, if-else, loops, lists)</span></label><label><input type="checkbox" data-id="2025-09-11:cs:2"> <span>Solve 10 concept Qs (MCQ/short) from notes/NCERT</span></label><label><input type="checkbox" data-id="2025-09-11:cs:3"> <span>Revise common errors &amp; dry-run 2 programs</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">12 Sept</span>
+          <span class="chip tag">Mock Day</span>
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Full Physics mock (NCERT-level, 3 sections)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-12:physics:0"> <span>Formula notebook (10 min scan)</span></label><label><input type="checkbox" data-id="2025-09-12:physics:1"> <span>HC Verma: 8–10 mixed numericals</span></label><label><input type="checkbox" data-id="2025-09-12:physics:2"> <span>Revisit theory for wrong Qs</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">Full Chemistry mock (mix Physical/Organic/Inorganic)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-12:chemistry:0"> <span>Skim highlighted NCERT pages</span></label><label><input type="checkbox" data-id="2025-09-12:chemistry:1"> <span>Solve 15–20 mixed NCERT/Exemplar Qs</span></label><label><input type="checkbox" data-id="2025-09-12:chemistry:2"> <span>Update reaction map / error log</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">Full Maths mock (algebra + trig + counting)</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-12:maths:0"> <span>Recall formulas (5–10 min)</span></label><label><input type="checkbox" data-id="2025-09-12:maths:1"> <span>RD Sharma: 15–20 mixed problems</span></label><label><input type="checkbox" data-id="2025-09-12:maths:2"> <span>Redo ★ problems</span></label></div></div></div></div><div class="card"><div class="body">
+        <div class="dayhead">
+          <span class="chip">13 Sept</span>
+          <span class="chip tag">Targeted Revision</span>
+        </div>
+      <div class="section col-phy"><div class="title">Physics</div>
+          <div class="muted" style="margin:4px 0 8px">Revise formulas + derivations; redo HCV ★ questions</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-13:physics:0"> <span>Formula notebook (10 min scan)</span></label><label><input type="checkbox" data-id="2025-09-13:physics:1"> <span>HC Verma: 8–10 mixed numericals</span></label><label><input type="checkbox" data-id="2025-09-13:physics:2"> <span>Revisit theory for wrong Qs</span></label></div></div><div class="section col-chem"><div class="title">Chemistry</div>
+          <div class="muted" style="margin:4px 0 8px">NCERT back exercise redo; reaction maps</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-13:chemistry:0"> <span>NCERT: line-by-line reading; highlight defs/exceptions</span></label><label><input type="checkbox" data-id="2025-09-13:chemistry:1"> <span>Organic: reaction maps; Inorganic: memorize NCERT lines</span></label><label><input type="checkbox" data-id="2025-09-13:chemistry:2"> <span>Solve NCERT in-text questions</span></label><label><input type="checkbox" data-id="2025-09-13:chemistry:3"> <span>Attempt 10–15 end-exercise Qs (then Exemplar if time)</span></label></div></div><div class="section col-math"><div class="title">Maths</div>
+          <div class="muted" style="margin:4px 0 8px">RD Sharma ★ problems redo; formula drill</div>
+          <div class="steps"><label><input type="checkbox" data-id="2025-09-13:maths:0"> <span>NCERT: intro + solved examples</span></label><label><input type="checkbox" data-id="2025-09-13:maths:1"> <span>Write formulas &amp; identities</span></label><label><input type="checkbox" data-id="2025-09-13:maths:2"> <span>RD Sharma: L1 → L2 problems (15–20)</span></label><label><input type="checkbox" data-id="2025-09-13:maths:3"> <span>Mark ★ problems; revisit steps</span></label></div></div></div></div></div>
+
+  <div class="card" style="margin-top:16px"><div class="body">
+    <h3 style="margin:4px 0 8px">How to use</h3>
+    <ul class="small">
+      <li>Each card shows tasks for that day. Checkboxes save automatically in your browser.</li>
+      <li>English &amp; CS are scheduled in 2–3 quick days each near the exam (light but fresh).</li>
+      <li>Export your progress JSON and import it on another device if needed.</li>
+      <li>Use search and subject tabs to focus. Print for a paper copy.</li>
+    </ul>
+  </div></div>
+</div>
+
+<script>
+  // ====== Data (PCM base as before) ======
+  const phase1 = [
+    { date: "2025-08-14", P: "Ch 5 Circular Motion – Basics", C: "Ch 4 Chemical Bonding – Types of bonds", M: "Ch 3 Trigonometry – Basics" },
+    { date: "2025-08-15", P: "Ch 5 Circular Motion – Banking & Loop", C: "Ch 4 Chemical Bonding – VSEPR & shapes", M: "Ch 3 Trigonometry – Identities" },
+    { date: "2025-08-16", P: "Ch 3 Motion in 2D – Vectors", C: "Ch 3 Periodicity – Basics", M: "Ch 4 Complex Numbers – Basics" },
+    { date: "2025-08-17", P: "Ch 3 Motion in 2D – Projectile", C: "Ch 3 Periodicity – Periodic trends", M: "Ch 4 Complex Numbers – Arg/Modulus" },
+    { date: "2025-08-18", P: "Revise Ch 1 Units & Measurement", C: "Revise Ch 1 Basic Concepts (Stoichiometry)", M: "Revise Ch 1 Sets" },
+    { date: "2025-08-19", P: "Revise Ch 2 Motion in 1D", C: "Revise Ch 2 Atomic Structure", M: "Ch 2 Relations & Functions" },
+    { date: "2025-08-20", P: "Ch 4 NLM – Newton’s Laws", C: "Ch 8 Organic: Basic Principles – I", M: "Relations & Functions (cont.)" },
+    { date: "2025-08-21", P: "Ch 4 NLM – Friction", C: "Ch 8 Organic – Nomenclature", M: "Ch 5 Linear Inequalities" },
+    { date: "2025-08-22", P: "Ch 6 Work/Energy – Work–Energy theorem", C: "Ch 8 Organic – Isomerism", M: "Linear Inequalities (cont.)" },
+    { date: "2025-08-23", P: "Ch 6 Work/Energy – Power & Springs", C: "Ch 9 Hydrocarbons – Alkanes", M: "Ch 6 Permutation & Combination – Basics" },
+    { date: "2025-08-24", P: "Ch 7 Rotational Motion – Torque & I", C: "Ch 9 Hydrocarbons – Alkenes/Alkynes", M: "Ch 6 P&C – Problems" },
+    { date: "2025-08-25", P: "Ch 7 Rotational Motion – Rolling", C: "Ch 9 Hydrocarbons – Aromatics", M: "Ch 7 Sequence & Series – Basics" },
+    { date: "2025-08-26", P: "Buffer – Leftover topics", C: "Buffer – Leftover topics", M: "Ch 7 Sequence & Series – Problems" },
+    { date: "2025-08-27", P: "Full Physics formula recap", C: "Full Chem formula/reaction recap", M: "Ch 8 Binomial Theorem" },
+    { date: "2025-08-28", P: "Physics Exemplar problems", C: "Chem Exemplar problems", M: "Binomial Theorem (cont.)" },
+    { date: "2025-08-29", P: "Mixed mock (PCM)", C: "Mock corrections & errors log", M: "Ch 9 Intro to 3D Geometry" },
+    { date: "2025-08-30", P: "Weak topics revision – Physics", C: "Weak topics revision – Chemistry", M: "Weak topics revision – Maths" },
+    { date: "2025-08-31", P: "Physics mixed numericals", C: "Chemistry mixed numericals", M: "Maths mixed problems" },
+    { date: "2025-09-01", P: "NCERT exercise – full sweep", C: "NCERT exercise – full sweep", M: "NCERT exercise – full sweep" },
+    { date: "2025-09-02", P: "1st cycle complete", C: "1st cycle complete", M: "1st cycle complete" },
+  ];
+
+  const phase2 = Array.from({ length: 12 }, (_, i) => {
+    const d = new Date("2025-09-03T00:00:00");
+    d.setDate(d.getDate() + i);
+    const isMock = i % 2 === 0;
+    return {
+      date: d.toISOString().slice(0,10),
+      P: isMock ? "Full Physics mock (NCERT-level, 3 sections)" : "Revise formulas + derivations; redo HCV ★ questions",
+      C: isMock ? "Full Chemistry mock (mix Physical/Organic/Inorganic)" : "NCERT back exercise redo; reaction maps",
+      M: isMock ? "Full Maths mock (algebra + trig + counting)" : "RD Sharma ★ problems redo; formula drill",
+      tag: isMock ? "Mock Day" : "Targeted Revision"
+    };
+  });
+
+  // English (3 focused days near exam) — fresh topics
+  const englishDays = [
+    { date: "2025-09-06", E: "Reading: Unseen passage; Note-making • Writing: Speech/Debate outlines • Grammar: Tenses & transformation" },
+    { date: "2025-09-08", E: "Hornbill: The Portrait of a Lady, A Photograph (poem), We’re Not Afraid… • Snapshots: The Summer of the Beautiful White Horse" },
+    { date: "2025-09-10", E: "Hornbill: Discovering Tut, Laburnum Top (poem), The Voice of the Rain (poem), The Adventure • Snapshots: The Address, Mother’s Day" },
+  ];
+
+  // Computer Science (2 focused days near exam) — fresh topics
+  const csDays = [
+    { date: "2025-09-09", CS: "Unit 1: Computer System Overview, Data Representation, Boolean Logic" },
+    { date: "2025-09-11", CS: "Unit 2: CT & Programming I — Intro to problem solving, Getting Started with Python, Python Fundamentals, Data Handling, Flow of Control" },
+  ];
+
+  // Merge all by date
+  const map = new Map();
+  [...phase1, ...phase2].forEach(d => map.set(d.date, { ...d }));
+  englishDays.forEach(d => map.set(d.date, { ...(map.get(d.date)||{date:d.date}), ...d }));
+  csDays.forEach(d => map.set(d.date, { ...(map.get(d.date)||{date:d.date}), ...d }));
+  const allDays = Array.from(map.values()).sort((a,b) => a.date.localeCompare(b.date));
+
+  // Steps per subject (new vs revise for PCM; English/CS are fresh/new)
+  const steps = {
+    physics: {
+      new: [
+        "NCERT: read section → underline key results",
+        "Write formulas in formula notebook",
+        "NCERT: in-text & example problems",
+        "HC Verma: 4–5 worked examples",
+        "HC Verma: 10–15 exercise numericals (mark ★ tough)"
+      ],
+      revise: [
+        "Formula notebook (10 min scan)",
+        "HC Verma: 8–10 mixed numericals",
+        "Revisit theory for wrong Qs"
+      ]
+    },
+    chemistry: {
+      new: [
+        "NCERT: line-by-line reading; highlight defs/exceptions",
+        "Organic: reaction maps; Inorganic: memorize NCERT lines",
+        "Solve NCERT in-text questions",
+        "Attempt 10–15 end-exercise Qs (then Exemplar if time)"
+      ],
+      revise: [
+        "Skim highlighted NCERT pages",
+        "Solve 15–20 mixed NCERT/Exemplar Qs",
+        "Update reaction map / error log"
+      ]
+    },
+    maths: {
+      new: [
+        "NCERT: intro + solved examples",
+        "Write formulas & identities",
+        "RD Sharma: L1 → L2 problems (15–20)",
+        "Mark ★ problems; revisit steps"
+      ],
+      revise: [
+        "Recall formulas (5–10 min)",
+        "RD Sharma: 15–20 mixed problems",
+        "Redo ★ problems"
+      ]
+    },
+    english: {
+      new: [
+        "Reading: 1 unseen passage → summary + answers",
+        "Writing: prepare 2 outlines (speech/debate) + 1 fair draft",
+        "Grammar: 25 Qs (tenses/transformations) timed",
+        "Literature: read + margin notes for 3–4 pieces; make quote/point bullets"
+      ]
+    },
+    cs: {
+      new: [
+        "Theory: make one-page cheatsheet per subtopic (key terms, diagrams)",
+        "Python: 8–10 small code snippets (print, input, if-else, loops, lists)",
+        "Solve 10 concept Qs (MCQ/short) from notes/NCERT",
+        "Revise common errors & dry-run 2 programs"
+      ]
+    }
+  };
+
+  const modeFor = (text) => {
+    if (!text) return "hide";
+    const t = text.toLowerCase();
+    return (t.includes("revise") || t.includes("recap") || t.includes("mixed") || t.includes("weak") || t.includes("complete") || t.includes("mock"))
+      ? "revise" : "new";
+  };
+
+  const $ = (q, el=document) => el.querySelector(q);
+  const $$ = (q, el=document) => Array.from(el.querySelectorAll(q));
+  const fmt = (iso) => new Date(iso).toLocaleDateString(undefined, { day:"2-digit", month:"short" });
+  const keyId = (iso, subject, idx) => `${iso}:${subject}:${idx}`;
+  const DONE_KEY = "planner_done_v2";
+  const THEME_KEY = "planner_theme_v1";
+
+  let done = {};
+  try { done = JSON.parse(localStorage.getItem(DONE_KEY) || "{}"); } catch(e){ done = {}; }
+
+  // Theme init
+  const savedTheme = localStorage.getItem(THEME_KEY) || "light";
+  document.documentElement.setAttribute("data-theme", savedTheme);
+  $("#btnTheme").textContent = savedTheme === "dark" ? "☀️ Light" : "🌙 Dark";
+
+  const state = { query: "", tab: "all" };
+
+  function render(){
+    const daysRoot = $("#days");
+    daysRoot.innerHTML = "";
+    const filtered = allDays.filter(d => {
+      const hay = `${fmt(d.date)} ${d.P||""} ${d.C||""} ${d.M||""} ${d.E||""} ${d.CS||""}`.toLowerCase();
+      return hay.includes(state.query.toLowerCase());
+    });
+
+    filtered.forEach(d => {
+      const card = document.createElement("div");
+      card.className = "card";
+      const body = document.createElement("div");
+      body.className = "body";
+      body.innerHTML = `
+        <div class="dayhead">
+          <span class="chip">${fmt(d.date)}</span>
+          ${d.tag ? `<span class="chip tag">${d.tag}</span>` : ""}
+        </div>
+      `;
+      card.appendChild(body);
+
+      // Helper to add subject block
+      function block(label, text, subject, colorClass){
+        if (!text) return;
+        if (state.tab !== "all" && state.tab !== subject) return;
+        const mode = subject === "english" || subject === "cs" ? "new" : modeFor(text);
+        if (mode === "hide") return;
+        const sec = document.createElement("div");
+        sec.className = `section ${colorClass}`;
+        sec.innerHTML = `<div class="title">${label}</div>
+          <div class="muted" style="margin:4px 0 8px">${text}</div>
+          <div class="steps"></div>`;
+        body.appendChild(sec);
+
+        const stepWrap = sec.querySelector(".steps");
+        (steps[subject][mode] || []).forEach((s, idx) => {
+          const id = keyId(d.date, subject, idx);
+          const lab = document.createElement("label");
+          lab.innerHTML = `<input type="checkbox" data-id="${id}" ${done[id]?"checked":""}> <span>${s}</span>`;
+          stepWrap.appendChild(lab);
+        });
+      }
+
+      block("Physics", d.P, "physics", "col-phy");
+      block("Chemistry", d.C, "chemistry", "col-chem");
+      block("Maths", d.M, "maths", "col-math");
+      block("English", d.E, "english", "col-eng");
+      block("Computer Science", d.CS, "cs", "col-cs");
+
+      daysRoot.appendChild(card);
+    });
+
+    // Bind checkboxes
+    $$('#days input[type="checkbox"]').forEach(cb => {
+      cb.addEventListener("change", e => {
+        const id = e.target.getAttribute("data-id");
+        done[id] = e.target.checked;
+        localStorage.setItem(DONE_KEY, JSON.stringify(done));
+        updateProgress();
+      });
+    });
+
+    updateProgress();
+  }
+
+  function updateProgress(){
+    let total = 0, completed = 0;
+    allDays.forEach(d => {
+      [["physics","P"],["chemistry","C"],["maths","M"],["english","E"],["cs","CS"]].forEach(([sub, prop]) => {
+        const text = d[prop];
+        if (!text) return;
+        const mode = sub === "english" || sub === "cs" ? "new" : modeFor(text);
+        const list = (steps[sub][mode] || []);
+        total += list.length;
+        list.forEach((_, i) => {
+          if (done[keyId(d.date, sub, i)]) completed++;
+        });
+      });
+    });
+    const pct = total ? Math.round(100*completed/total) : 0;
+    $("#progBar").style.width = pct + "%";
+    $("#progTxt").textContent = `${completed}/${total} tasks`;
+  }
+
+  // Countdown
+  const examDate = new Date("2025-09-15T00:00:00");
+  function updateCountdown(){
+    const now = new Date();
+    const diff = Math.max(0, examDate - now);
+    const days = Math.ceil(diff / (1000*60*60*24));
+    $("#countdown").textContent = `Exam in ${days} day${days===1?"":"s"}`;
+  }
+  updateCountdown();
+  setInterval(updateCountdown, 60*1000);
+
+  // UI binds
+  $("#btnPrint").addEventListener("click", () => window.print());
+  $("#btnReset").addEventListener("click", () => {
+    if (confirm("Clear all checkmarks?")){ done = {}; localStorage.setItem(DONE_KEY,"{}"); render(); }
+  });
+  $("#btnTheme").addEventListener("click", () => {
+    const cur = document.documentElement.getAttribute("data-theme") === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", cur);
+    localStorage.setItem(THEME_KEY, cur);
+    $("#btnTheme").textContent = cur === "dark" ? "☀️ Light" : "🌙 Dark";
+  });
+  $("#btnExport").addEventListener("click", () => {
+    const blob = new Blob([JSON.stringify(done,null,2)], {type:"application/json"});
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "planner_progress.json";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+  $("#btnImport").addEventListener("click", () => {
+    const input = document.createElement("input");
+    input.type = "file"; input.accept = "application/json";
+    input.addEventListener("change", () => {
+      const file = input.files[0]; if (!file) return;
+      const reader = new FileReader();
+      reader.onload = () => {
+        try {
+          const data = JSON.parse(reader.result);
+          if (typeof data === "object"){ done = data; localStorage.setItem(DONE_KEY, JSON.stringify(done)); render(); }
+          else alert("Invalid file.");
+        } catch(e){ alert("Could not parse file."); }
+      };
+      reader.readAsText(file);
+    });
+    input.click();
+  });
+  $("#search").addEventListener("input", e => { state.query = e.target.value; render(); });
+  document.addEventListener("keydown", e => {
+    if (e.key === "/"){ e.preventDefault(); $("#search").focus(); }
+    if (e.key.toLowerCase() === "t"){ document.getElementById("btnTheme").click(); }
+  });
+  $$("#tabs .tab").forEach(btn => btn.addEventListener("click", () => {
+    $$("#tabs .tab").forEach(b => b.classList.remove("active"));
+    btn.classList.add("active");
+    state.tab = btn.getAttribute("data-tab");
+    render();
+  }));
+
+  // Initial render
+  render();
+</script>
+
+
+</body></html>
